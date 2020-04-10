@@ -44,7 +44,7 @@ function welcomeScreen(){
   titleText.textContent="Welcome!";
   questionText.textContent="Are you ready for a quiz?";
   answerText.textContent="";
-  resultText.textContent="Welcome!";
+  resultText.textContent="";
   
 }
 
@@ -57,13 +57,13 @@ function questionScreen(){
   resultText.textContent="Questions!";
 }
 // WHILE TIME LEFT OR QUESTIONS LEFT
-while(timerValue>0 || length.questionArray>0){
-  for (var i = 0; i < questionArray.length; i++){
-    var currentQuestion=questionArray[i];
-    var currentQuestionText=currentQuestion.q;
-    var currentAnswer=currentQuestion.c;
-  }
-}
+// while(timerValue>0 || length.questionArray>0){
+//   for (var i = 0; i < questionArray.length; i++){
+//     var currentQuestion=questionArray[i];
+//     var currentQuestionText=currentQuestion.q;
+//     var currentAnswer=currentQuestion.c;
+//   }
+// }
 
 
 // QUESTION AND ANSWERS
@@ -114,20 +114,39 @@ var questionFour = {
   w3:"Dr. Who"
 }
 
+function renderQuestion(question){
+  var displayText=question.q;
+  questionText.textContent=displayText;
+}
 
-function randomizeButtons(choices){
-  rand1=Math.random();
-  rand2=Math.random();
-  rand3=Math.random();
-  rand4=Math.random();
+function renderAnswers(question){
+  var correctAnswer=question.c
+  var wrong1=question.w1;
+  var wrong2=question.w2;
+  var wrong3=question.w3;
   
-    
 }
 
 
 // Loadpage
 // Call the welcome page which sets the title 
 
+renderQuestion(questionOne);
 
 
 
+// CREATING THE TIMER
+var timeLeft;
+function timer(){ 
+  timeLeft=10;
+  timerText.textContent="Time left:"+timeLeft;
+  setInterval(
+    function(){
+      // IF TIME LEFT IS GREATER THAN 0 DECREMENT
+      if(timeLeft>0){
+        timeLeft--;
+      }
+      timerText.textContent="Time left:"+timeLeft;
+  },1000);
+
+}
