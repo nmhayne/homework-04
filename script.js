@@ -24,6 +24,35 @@ var button4=document.getElementById("butt4");
 var pageStatus;
 var score;
 
+var questionOne = {
+  q:"David Gilmour is famous for playing what kind of guitar?",
+  c:"Fender Strat",
+  w1:"Gibson SG",
+  w2:"Gretsch DuoJet",
+  w3:"BC Rich Warlock" 
+}
+var questionTwo = {
+  q:"The album Animals is about what?",
+  c:"Capitalism",
+  w1:"Women",
+  w2:"Childhood Memories",
+  w3:"Fluffy Animals"
+}
+var questionThree = {
+  q:"What concert incident inspired Roger Waters to write The Wall?",
+  c:"Roger Spits on a Fan",
+  w1:"Roger Highfives a Fan",
+  w2:"Roger suffers a brain injury from a fall",
+  w3:"Roger poops himself"
+}
+var questionFour = {
+  q:"The Album Artwork for Saucer full of secret features which superhero?",
+  c:"Dr. Strange",
+  w1:"Dr. Manhattan",
+  w2:"Dr. Doom",
+  w3:"Dr. Who"
+}
+
 // FUNCTION TO IDENTIFY BUTTON
 function buttonClicked(){
   switch(event.target){
@@ -68,6 +97,35 @@ function welcomeScreen(){
 }
 // 2. Questions
 function questionScreen(){
+  var questionOne = {
+    q:"David Gilmour is famous for playing what kind of guitar?",
+    c:"Fender Strat",
+    w1:"Gibson SG",
+    w2:"Scjecter Demon",
+    w3:"BC Rich Warlock" 
+  }
+  var questionTwo = {
+    q:"The album Animals is about what?",
+    c:"Capitalism",
+    w1:"Women",
+    w2:"Childhood Memories",
+    w3:"Fluffy Animals"
+  }
+  var questionThree = {
+    q:"What concert incident inspired Roger Waters to write The Wall?",
+    c:"Roger Spits on a Fan",
+    w1:"Roger Highfives a Fan",
+    w2:"Roger suffers a brain injury from a fall",
+    w3:"Roger poops himself"
+  }
+  var questionFour = {
+    q:"The Album Artwork for Saucer full of secret features which superhero?",
+    c:"Dr. Strange",
+    w1:"Dr. Manhattan",
+    w2:"Dr. Doom",
+    w3:"Dr. Who"
+  }
+  
   timer();
   // WHILE TIME LEFT OR QUESTIONS LEFT
   var questionsLeft=questionArray.length;
@@ -94,41 +152,60 @@ function scoreScreen(){
   answerDiv.textContent=score;
 }
 // QUESTIONS AND ANSWERS
-var questionOne = {
-  q:"David Gilmour is famous for playing what kind of guitar?",
-  c:"Fender Strat",
-  w1:"Gibson SG",
-  w2:"Scjecter Demon",
-  w3:"BC Rich Warlock" 
-}
-var questionTwo = {
-  q:"The album Animals is about what?",
-  c:"Capitalism",
-  w1:"Women",
-  w2:"Childhood Memories",
-  w3:"Fluffy Animals"
-}
-var questionThree = {
-  q:"What concert incident inspired Roger Waters to write The Wall?",
-  c:"Roger Spits on a Fan",
-  w1:"Roger Highfives a Fan",
-  w2:"Roger suffers a brain injury from a fall",
-  w3:"Roger poops himself"
-}
-var questionFour = {
-  q:"The Album Artwork for Saucer full of secret features which superhero?",
-  c:"Dr. Strange",
-  w1:"Dr. Manhattan",
-  w2:"Dr. Doom",
-  w3:"Dr. Who"
-}
 
+var questionArray = [
+  questionOne,
+  questionTwo,
+  questionThree,
+  questionFour
+]; 
 function renderQuestion(question){
+  var questionArray = [
+    questionOne,
+    questionTwo,
+    questionThree,
+    questionFour
+  ]; 
+
   var displayText=question.q;
   questionText.textContent=displayText;
 }
 
 function renderAnswers(question){
+  var questionArray = [
+    questionOne,
+    questionTwo,
+    questionThree,
+    questionFour
+  ]; 
+  var questionOne = {
+    q:"David Gilmour is famous for playing what kind of guitar?",
+    c:"Fender Strat",
+    w1:"Gibson SG",
+    w2:"Gretsch DuoJet",
+    w3:"BC Rich Warlock" 
+  }
+  var questionTwo = {
+    q:"The album Animals is about what?",
+    c:"Capitalism",
+    w1:"Women",
+    w2:"Childhood Memories",
+    w3:"Fluffy Animals"
+  }
+  var questionThree = {
+    q:"What concert incident inspired Roger Waters to write The Wall?",
+    c:"Roger Spits on a Fan",
+    w1:"Roger Highfives a Fan",
+    w2:"Roger suffers a brain injury from a fall",
+    w3:"Roger poops himself"
+  }
+  var questionFour = {
+    q:"The Album Artwork for Saucer full of secret features which superhero?",
+    c:"Dr. Strange",
+    w1:"Dr. Manhattan",
+    w2:"Dr. Doom",
+    w3:"Dr. Who"
+  }
   var correctAnswer=question.c;
   var wrong1=question.w1;
   var wrong2=question.w2;
@@ -157,4 +234,4 @@ function timer(){
     
   }
   
-  welcomeScreen();
+questionScreen();

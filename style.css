@@ -13,3 +13,8 @@ margin: auto;
 text-align: center;
 height: 1600px;
 }
+.answers{
+    padding: 20px;
+    margin: 20px;
+    height: 60px;
+}
