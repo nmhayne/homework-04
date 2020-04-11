@@ -1,0 +1,4 @@
+3 elements on the page, "welcome" "hit start when you're ready" start button
+Clicking the start button triggers the questions phase
+Start of the question phase triggers the timer and renders first question
+question has question.q questison.c question.w1 quesiton.w2 question.w3

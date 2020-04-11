@@ -1,11 +1,11 @@
 // SELECTING PARTS OF PAGE
 // div elements
-var timerDisplay=document.getElementById("timerDisplay");
-var titleDisplay=document.getElementById("titleDisplay");
-var questionDisplay=document.getElementById("questionDisplay");
+var timerDiv=document.getElementById("timerDiv");
+var titleDiv=document.getElementById("titleDiv");
+var questionDiv=document.getElementById("questionDiv");
 var answerDiv=document.getElementById("answerDiv");
 var answerButtons=document.getElementById("answerButtons");
-var resultDisplay=document.getElementById("resultDisplay");
+var resultDiv=document.getElementById("resultDiv");
 
 // text inside div elements
 var timerText=document.getElementById("timerText");
@@ -21,9 +21,13 @@ var button2=document.getElementById("butt2");
 var button3=document.getElementById("butt3");
 var button4=document.getElementById("butt4");
 
-var pageStatus;
+// IF THE PAGE IS WELCOME, A QUESTION OR SCORE SCREEN
+var pageStatus="welcome";
+
+// USER SCORE, WHEN THEY GET A QUETION RIGHT INCREMENT
 var score;
 
+// INDIVIDUAL QUESTIONS WITH A CORRECT AND 3 WRONG
 var questionOne = {
   q:"David Gilmour is famous for playing what kind of guitar?",
   c:"Fender Strat",
@@ -59,32 +63,37 @@ function buttonClicked(){
     case button1:
     console.log("button1")
     if(pageStatus==="welcome"){
-      questionScreen();
+      pageStatus="questions";
+      console.log(pageStatus);
     }
     return "button1";
     
     case button2:
     console.log("button2")
     if(pageStatus==="welcome"){
-      questionScreen();
+      pageStatus="questions";
+      console.log(pageStatus);
     }
     return "button2";
     
     case button3:
     console.log("button3")
     if(pageStatus==="welcome"){
-      questionScreen();
+      pageStatus="questions";
+      console.log(pageStatus);
     }
     return "button3";
     
     case button4:
     console.log("button4")
     if(pageStatus==="welcome"){
-      questionScreen();
+      pageStatus="questions";
+      console.log(pageStatus);
     }
     
     return "button4";
   }
+  console.log(pageStatus);
 } 
 
 // 1. Welcome 
@@ -233,5 +242,4 @@ function timer(){
     },1000);
     
   }
-  
-questionScreen();
+
