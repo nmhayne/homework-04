@@ -3,7 +3,7 @@
 var timerDisplay=document.getElementById("timerDisplay");
 var titleDisplay=document.getElementById("titleDisplay");
 var questionDisplay=document.getElementById("questionDisplay");
-var answerDisplay=document.getElementById("answerDisplay");
+var answerDiv=document.getElementById("answerDiv");
 var answerButtons=document.getElementById("answerButtons");
 var resultDisplay=document.getElementById("resultDisplay");
 
@@ -20,20 +20,40 @@ var button1=document.getElementById("butt1");
 var button2=document.getElementById("butt2");
 var button3=document.getElementById("butt3");
 var button4=document.getElementById("butt4");
+
+var pageStatus;
+var score;
+
 // FUNCTION TO IDENTIFY BUTTON
 function buttonClicked(){
   switch(event.target){
     case button1:
+    console.log("button1")
+    if(pageStatus==="welcome"){
+      questionScreen();
+    }
     return "button1";
     
-    
     case button2:
+    console.log("button2")
+    if(pageStatus==="welcome"){
+      questionScreen();
+    }
     return "button2";
     
     case button3:
+    console.log("button3")
+    if(pageStatus==="welcome"){
+      questionScreen();
+    }
     return "button3";
     
     case button4:
+    console.log("button4")
+    if(pageStatus==="welcome"){
+      questionScreen();
+    }
+    
     return "button4";
   }
 } 
@@ -43,29 +63,23 @@ function welcomeScreen(){
   timerText.textContent="";
   titleText.textContent="Welcome!";
   questionText.textContent="Are you ready for a quiz?";
-  answerText.textContent="";
   resultText.textContent="";
-  
+  pageStatus="welcome";
 }
-
 // 2. Questions
 function questionScreen(){
-  timerText.textContent="Questions!";
-  titleText.textContent="Questions!";
-  questionText.textContent="Questions!";
-  answerText.textContent="Questions!";
-  resultText.textContent="Questions!";
+  timer();
+  // WHILE TIME LEFT OR QUESTIONS LEFT
+  var questionsLeft=questionArray.length;
+  while(timeLeft>0 || questionsLeft>0){
+    for (var i = 0; i < questionArray.length; i++){
+      var currentQuestion=questionArray[i];
+      renderQuestion(currentQuestion);
+      renderAnswers(currentQuestion);
+      questionsLeft--;
+    }
+  }
 }
-// WHILE TIME LEFT OR QUESTIONS LEFT
-// while(timerValue>0 || length.questionArray>0){
-//   for (var i = 0; i < questionArray.length; i++){
-//     var currentQuestion=questionArray[i];
-//     var currentQuestionText=currentQuestion.q;
-//     var currentAnswer=currentQuestion.c;
-//   }
-// }
-
-
 // QUESTION AND ANSWERS
 var questionArray = [
   questionOne,
@@ -73,20 +87,15 @@ var questionArray = [
   questionThree,
   questionFour
 ]; 
-
-
 // 3. Score
 function scoreScreen(){
-  timerText.textContent="Score!";
-  titleText.textContent="Score!";
-  questionText.textContent="Score!";
-  answerText.textContent="Score!";
-  resultText.textContent="Score!";
+  titleText.textContent="Finished!";
+  questionText.textContent="Your score:";
+  answerDiv.textContent=score;
 }
-
 // QUESTIONS AND ANSWERS
 var questionOne = {
-  q:"David gilmour is famous for playing what kind of guitar?",
+  q:"David Gilmour is famous for playing what kind of guitar?",
   c:"Fender Strat",
   w1:"Gibson SG",
   w2:"Scjecter Demon",
@@ -120,21 +129,18 @@ function renderQuestion(question){
 }
 
 function renderAnswers(question){
-  var correctAnswer=question.c
+  var correctAnswer=question.c;
   var wrong1=question.w1;
   var wrong2=question.w2;
   var wrong3=question.w3;
-  
+  var tempArray=[correctAnswer,wrong1,wrong2,wrong3];
+  tempArray=tempArray.sort();
+  for(var i=0;i<tempArray.length;i++){
+    var h3 =document.createElement("h3");
+    h3.textContent=tempArray[i];
+    answerDiv.appendChild(h3);
+  }
 }
-
-
-// Loadpage
-// Call the welcome page which sets the title 
-
-renderQuestion(questionOne);
-
-
-
 // CREATING THE TIMER
 var timeLeft;
 function timer(){ 
@@ -147,6 +153,8 @@ function timer(){
         timeLeft--;
       }
       timerText.textContent="Time left:"+timeLeft;
-  },1000);
-
-}
+    },1000);
+    
+  }
+  
+  welcomeScreen();
