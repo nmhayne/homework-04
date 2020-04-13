@@ -15,7 +15,6 @@ var answerText=document.getElementById("answerText");
 var resultText=document.getElementById("resultText");
 
 //SELECTING BUTTONS
-answerButtons.addEventListener("click",buttonClicked);
 var button1=document.getElementById("butt1");
 var button2=document.getElementById("butt2");
 var button3=document.getElementById("butt3");
@@ -60,51 +59,33 @@ var questionFour = {
 // FUNCTION TO IDENTIFY BUTTON
 function buttonClicked(){
   switch(event.target){
+    // BUTTON 1 CLICKED
     case button1:
     console.log("button1")
-    if(pageStatus==="welcome"){
-      pageStatus="questions";
-      console.log(pageStatus);
-    }
     return "button1";
     
+    // BUTTON 2 CLICKED
     case button2:
-    console.log("button2")
-    if(pageStatus==="welcome"){
-      pageStatus="questions";
-      console.log(pageStatus);
-    }
+    console.log("button2")    
     return "button2";
-    
+
+    // BUTTON 3 CLICKED
     case button3:
     console.log("button3")
-    if(pageStatus==="welcome"){
-      pageStatus="questions";
-      console.log(pageStatus);
-    }
     return "button3";
     
+    // BUTTON 4 CLICKED
     case button4:
-    console.log("button4")
-    if(pageStatus==="welcome"){
-      pageStatus="questions";
-      console.log(pageStatus);
-    }
-    
+    console.log("button4") 
     return "button4";
+  
+    default:
+    break;
   }
-  console.log(pageStatus);
 } 
 
-// 1. Welcome 
-function welcomeScreen(){
-  timerText.textContent="";
-  titleText.textContent="Welcome!";
-  questionText.textContent="Are you ready for a quiz?";
-  resultText.textContent="";
-  pageStatus="welcome";
-}
-// 2. Questions
+
+// Questions
 function questionScreen(){
   var questionOne = {
     q:"David Gilmour is famous for playing what kind of guitar?",
@@ -147,13 +128,7 @@ function questionScreen(){
     }
   }
 }
-// QUESTION AND ANSWERS
-var questionArray = [
-  questionOne,
-  questionTwo,
-  questionThree,
-  questionFour
-]; 
+
 // 3. Score
 function scoreScreen(){
   titleText.textContent="Finished!";
@@ -161,7 +136,6 @@ function scoreScreen(){
   answerDiv.textContent=score;
 }
 // QUESTIONS AND ANSWERS
-
 var questionArray = [
   questionOne,
   questionTwo,
@@ -243,3 +217,13 @@ function timer(){
     
   }
 
+var clickedButton=answerButtons.addEventListener("click",buttonClicked);
+
+while(pageStatus==="welcome"){
+  if(clickedButton!=undefined){
+    pageStatus="questions";
+  }
+}
+while(pageStatus==="questions"){
+  console.log("Enter Question Phase")
+}

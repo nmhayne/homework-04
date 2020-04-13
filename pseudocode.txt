@@ -2,3 +2,23 @@
 Clicking the start button triggers the questions phase
 Start of the question phase triggers the timer and renders first question
 question has question.q questison.c question.w1 quesiton.w2 question.w3
+
+
+
+
+
+
+
+WELCOME SCREEN (Page loads default welcome)
+    welcome
+    ready for a quiz?
+    <button>Start button<button> calls question function
+    
+
+
+1. QUESTIONS
+    timer starts and displays
+    welcome is replaced by the question number
+    render question
+       display question text
+       display all possible answers
