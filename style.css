@@ -7,14 +7,15 @@
 }
 
 .body{
-color: saddlebrown;
+color: palevioletred;
 width: 50%;
 margin: auto;
 text-align: center;
 height: 1600px;
 }
-.answers{
+.answer-btn{
     padding: 20px;
-    margin: 20px;
-    height: 60px;
+    margin: 5px;
+    border-style: solid;
+    border-radius: 20px;
 }

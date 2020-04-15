@@ -14,193 +14,6 @@ var questionText=document.getElementById("questionText");
 var answerText=document.getElementById("answerText");
 var resultText=document.getElementById("resultText");
 
-//SELECTING BUTTONS
-var button1=document.getElementById("butt1");
-var button2=document.getElementById("butt2");
-var button3=document.getElementById("butt3");
-var button4=document.getElementById("butt4");
-
-// IF THE PAGE IS WELCOME, A QUESTION OR SCORE SCREEN
-var pageStatus="welcome";
-
-// USER SCORE, WHEN THEY GET A QUETION RIGHT INCREMENT
-var score;
-
-// INDIVIDUAL QUESTIONS WITH A CORRECT AND 3 WRONG
-var questionOne = {
-  q:"David Gilmour is famous for playing what kind of guitar?",
-  c:"Fender Strat",
-  w1:"Gibson SG",
-  w2:"Gretsch DuoJet",
-  w3:"BC Rich Warlock" 
-}
-var questionTwo = {
-  q:"The album Animals is about what?",
-  c:"Capitalism",
-  w1:"Women",
-  w2:"Childhood Memories",
-  w3:"Fluffy Animals"
-}
-var questionThree = {
-  q:"What concert incident inspired Roger Waters to write The Wall?",
-  c:"Roger Spits on a Fan",
-  w1:"Roger Highfives a Fan",
-  w2:"Roger suffers a brain injury from a fall",
-  w3:"Roger poops himself"
-}
-var questionFour = {
-  q:"The Album Artwork for Saucer full of secret features which superhero?",
-  c:"Dr. Strange",
-  w1:"Dr. Manhattan",
-  w2:"Dr. Doom",
-  w3:"Dr. Who"
-}
-
-// FUNCTION TO IDENTIFY BUTTON
-function buttonClicked(){
-  switch(event.target){
-    // BUTTON 1 CLICKED
-    case button1:
-    console.log("button1")
-    return "button1";
-    
-    // BUTTON 2 CLICKED
-    case button2:
-    console.log("button2")    
-    return "button2";
-
-    // BUTTON 3 CLICKED
-    case button3:
-    console.log("button3")
-    return "button3";
-    
-    // BUTTON 4 CLICKED
-    case button4:
-    console.log("button4") 
-    return "button4";
-  
-    default:
-    break;
-  }
-} 
-
-
-// Questions
-function questionScreen(){
-  var questionOne = {
-    q:"David Gilmour is famous for playing what kind of guitar?",
-    c:"Fender Strat",
-    w1:"Gibson SG",
-    w2:"Scjecter Demon",
-    w3:"BC Rich Warlock" 
-  }
-  var questionTwo = {
-    q:"The album Animals is about what?",
-    c:"Capitalism",
-    w1:"Women",
-    w2:"Childhood Memories",
-    w3:"Fluffy Animals"
-  }
-  var questionThree = {
-    q:"What concert incident inspired Roger Waters to write The Wall?",
-    c:"Roger Spits on a Fan",
-    w1:"Roger Highfives a Fan",
-    w2:"Roger suffers a brain injury from a fall",
-    w3:"Roger poops himself"
-  }
-  var questionFour = {
-    q:"The Album Artwork for Saucer full of secret features which superhero?",
-    c:"Dr. Strange",
-    w1:"Dr. Manhattan",
-    w2:"Dr. Doom",
-    w3:"Dr. Who"
-  }
-  
-  timer();
-  // WHILE TIME LEFT OR QUESTIONS LEFT
-  var questionsLeft=questionArray.length;
-  while(timeLeft>0 || questionsLeft>0){
-    for (var i = 0; i < questionArray.length; i++){
-      var currentQuestion=questionArray[i];
-      renderQuestion(currentQuestion);
-      renderAnswers(currentQuestion);
-      questionsLeft--;
-    }
-  }
-}
-
-// 3. Score
-function scoreScreen(){
-  titleText.textContent="Finished!";
-  questionText.textContent="Your score:";
-  answerDiv.textContent=score;
-}
-// QUESTIONS AND ANSWERS
-var questionArray = [
-  questionOne,
-  questionTwo,
-  questionThree,
-  questionFour
-]; 
-function renderQuestion(question){
-  var questionArray = [
-    questionOne,
-    questionTwo,
-    questionThree,
-    questionFour
-  ]; 
-
-  var displayText=question.q;
-  questionText.textContent=displayText;
-}
-
-function renderAnswers(question){
-  var questionArray = [
-    questionOne,
-    questionTwo,
-    questionThree,
-    questionFour
-  ]; 
-  var questionOne = {
-    q:"David Gilmour is famous for playing what kind of guitar?",
-    c:"Fender Strat",
-    w1:"Gibson SG",
-    w2:"Gretsch DuoJet",
-    w3:"BC Rich Warlock" 
-  }
-  var questionTwo = {
-    q:"The album Animals is about what?",
-    c:"Capitalism",
-    w1:"Women",
-    w2:"Childhood Memories",
-    w3:"Fluffy Animals"
-  }
-  var questionThree = {
-    q:"What concert incident inspired Roger Waters to write The Wall?",
-    c:"Roger Spits on a Fan",
-    w1:"Roger Highfives a Fan",
-    w2:"Roger suffers a brain injury from a fall",
-    w3:"Roger poops himself"
-  }
-  var questionFour = {
-    q:"The Album Artwork for Saucer full of secret features which superhero?",
-    c:"Dr. Strange",
-    w1:"Dr. Manhattan",
-    w2:"Dr. Doom",
-    w3:"Dr. Who"
-  }
-  var correctAnswer=question.c;
-  var wrong1=question.w1;
-  var wrong2=question.w2;
-  var wrong3=question.w3;
-  var tempArray=[correctAnswer,wrong1,wrong2,wrong3];
-  tempArray=tempArray.sort();
-  for(var i=0;i<tempArray.length;i++){
-    var h3 =document.createElement("h3");
-    h3.textContent=tempArray[i];
-    answerDiv.appendChild(h3);
-  }
-}
 // CREATING THE TIMER
 var timeLeft;
 function timer(){ 
@@ -216,14 +29,159 @@ function timer(){
     },1000);
     
   }
-
-var clickedButton=answerButtons.addEventListener("click",buttonClicked);
-
-while(pageStatus==="welcome"){
-  if(clickedButton!=undefined){
-    pageStatus="questions";
+  
+  // USER SCORE, WHEN THEY GET A QUETION RIGHT INCREMENT
+  var score=0;
+  
+  // INDIVIDUAL QUESTIONS WITH A CORRECT AND 3 WRONG
+  var questionOne = {
+    q:"David Gilmour is famous for playing what kind of guitar?",
+    a: [
+      { n: "Fender Strat", correct: true }, 
+      { n: "Gibson SG", correct: false }, 
+      { n: "Gretsch DuoJet", correct: false }, 
+      { n: "BC Rich Warlock", correct: false }
+    ] 
   }
-}
-while(pageStatus==="questions"){
-  console.log("Enter Question Phase")
-}
+  var questionTwo = {
+    q:"The album Animals is about what?",
+    a:[
+      { n: "Capitalism", correct: true},
+      { n: "Women",correct: false},
+      { n: "Childhood Memories",correct: false},
+      { n: "Fluffy Animals", corect: false}
+    ]
+  }
+  var questionThree = {
+    q:"What concert incident inspired Roger Waters to write The Wall?",
+    a:[
+      { n: "Roger Spits on a Fan", correct: true},
+      { n: "Roger Highfives a Fan",correct: false},
+      { n: "Roger suffers a brain injury from a fall",correct: false},
+      { n: "Roger poops himself", corect: false}
+    ]
+  }
+  var questionFour = {
+    q:"The Album Artwork for Saucer full of secret features which superhero?",
+    a: [
+      {n:"Dr. Strange", correct: true},
+      {n:"Dr. Manhattan", correct: false},
+      {n:"Dr. Doom", correct: false},
+      {n:"Dr. Who", correct: false},
+    ]
+  }
+  // DELCLARING QUESTION ARRAY
+  var questionArray = [ questionOne, questionTwo, questionThree, questionFour ]; 
+  
+  
+  // INDEX OF THE CURRENT QUESTION
+  var currQuizIndex = 0;
+  var timeRemaining = 1000;
+  
+  
+  // FUNCTION TO CALL WHEN THE PAGE LOADS
+  function startQuiz(){
+    var countdown = setInterval(function(){
+      if( timeRemaining <= 0 ){
+        scoreScreen();
+        clearInterval(countdown);
+      }else
+      timeRemaining--;
+      timerText.textContent="Time Remaining: "+ timeRemaining;
+    }, 100 )
+    runQuiz();
+  }
+  
+  // FUNCTION TO ASK QUESTIONS WHILE LEFT
+  function runQuiz(){
+    
+    // IF CURRENT QUESTION INDEX IS LESS THAN ARRAY LENGTH, STILL QUIZ
+    if( currQuizIndex < questionArray.length ){
+      var currQuestion = questionArray[currQuizIndex];
+      renderQuestion(currQuestion);
+    } 
+    // ELSE END QUIZ
+    else { 
+      scoreScreen();
+    }
+  }
+  
+  // FUNCTION TO DISPLAY THE QUESTION AND CREATE ANSWER BUTTONS
+  function renderQuestion(question){
+    
+    // CLEAR PREVIOUS ANSWER BUTTONS
+    answerDiv.textContent="";
+    console.log("rendering");
+    
+    // SET QUESTION TEXT TO THE QUESTION
+    questionText.textContent = question.q;
+    
+    // FOR ANSWERS CREATE A BUTTON
+    for(var i = 0; i<question.a.length; i++){
+      var btn = document.createElement("button");
+      
+      // SET THE ATTRIBUTE TO ANSWER-BTN
+      btn.setAttribute("class", "answer-btn");
+      
+      // SET THE BUTTON TEXT TO THE ANSWER
+      btn.textContent = question.a[i].n;
+      
+      // IF THE ANSWER IS THE CORRECT SET A DATA-CORRECT ATTRIBUTE TO YES
+      if( question.a[i].correct === true ){
+        btn.setAttribute("data-correct", "yes");
+      }
+      
+      // APPEND THE BUTTON 
+      answerDiv.appendChild(btn);
+    }
+  }
+  
+  // CLICK HANDLER FOR ANSWER BUTTONS
+  answerDiv.addEventListener("click", function(){
+    if(event.target.matches("button") ){
+      // DETERMINE CLICKED BUTTON
+      var button=event.target; 
+      var buttonValue=button.getAttribute("data-correct");
+      
+      
+      // IF CORRECT ANSWER
+      if(buttonValue==="yes"){
+        score++;
+        resultText.textContent="Correct"
+        setTimeout(function(){
+          resultText.textContent=""
+        }),100  
+      }
+      
+      // IF INCORRECT ANSWER
+      if(buttonValue===null){
+        timeRemaining-=20;
+        resultText.textContent="Wrong!"
+        setTimeout(function(){
+          resultText.textContent=""
+        }),100  
+        
+      }
+      // AFTER TESTING ANSWER VALIDITY
+      // GO TO NEXT QUESTION
+      currQuizIndex++;
+      runQuiz();
+    };
+  });
+  
+  
+  
+  
+  // 3. Score
+  function scoreScreen(){
+    titleText.textContent="Finished!";
+    questionText.textContent="Your score:";
+    answerDiv.textContent=score;
+  }
+  
+  
+  
+  
+  
+  
+  startQuiz();
